@@ -1,14 +1,26 @@
-package com.eventec.myevent.evento.model;
+package com.eventec.myevent.event.domain.model.aggregates;
+
+import com.eventec.myevent.event.domain.exceptions.EventNotFoundException;
+import com.eventec.myevent.event.domain.model.commands.CreateEventCommand;
+import com.eventec.myevent.event.domain.model.commands.UpdateEventCommand;
+import jakarta.persistence.*;
+
 
 import java.util.Date;
 
+@Entity
 public class Event {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
     private Date startDate;
     private Date endDate;
+    @Embedded
     private Location location;
+    @Embedded
     private Organizer organizer;
     private int totalTickets;
 
@@ -26,6 +38,29 @@ public class Event {
         this.location = location;
         this.organizer = organizer;
         this.totalTickets = totalTickets;
+    }
+
+    // Constructor que acepta un CreateEventCommand
+    public Event(CreateEventCommand command) {
+        this.name = command.eventName();
+        this.description = command.eventDescription();
+        this.startDate = command.eventStartDate();
+        this.endDate = command.eventEndDate();
+        // Los campos location, organizer y totalTickets no están presentes en CreateEventCommand
+        // Puedes agregarlos si son necesarios
+    }
+
+    // Método para actualizar un evento con un UpdateEventCommand
+    public void update(UpdateEventCommand command) {
+        if (!this.id.equals(command.id())) {
+            throw new EventNotFoundException(this.id);
+        }
+        this.name = command.eventName();
+        this.description = command.eventDescription();
+        this.startDate = command.eventStartDate();
+        this.endDate = command.eventEndDate();
+        // Los campos location, organizer y totalTickets no están presentes en UpdateEventCommand
+        // Puedes agregarlos si son necesarios
     }
 
     // Getters and setters (se omiten para brevedad)

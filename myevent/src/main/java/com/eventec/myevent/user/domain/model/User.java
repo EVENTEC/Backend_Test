@@ -1,4 +1,4 @@
-package com.eventec.myevent.usuario.domain.model;
+package com.eventec.myevent.user.domain.model;
 
 import jakarta.persistence.*;
 import java.util.Date;

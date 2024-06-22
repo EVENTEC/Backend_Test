@@ -1,9 +1,18 @@
-package com.eventec.myevent.evento.model;
+package com.eventec.myevent.event.domain.model.aggregates;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Location {
+
+    @Column(name = "location_name")
     private String name;
+    @Column(name = "location_address")
     private String address;
+    @Column(name = "location_city")
     private String city;
+    @Column(name = "location_country")
     private String country;
 
     public Location() {
