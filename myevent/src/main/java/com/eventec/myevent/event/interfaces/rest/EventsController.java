@@ -10,6 +10,7 @@ import com.eventec.myevent.event.domain.services.EventQueryService;
 import com.eventec.myevent.event.interfaces.rest.resources.CreateEventResource;
 import com.eventec.myevent.event.interfaces.rest.resources.EventResource;
 import com.eventec.myevent.event.interfaces.rest.resources.UpdateEventResource;
+import com.eventec.myevent.event.interfaces.rest.resources.UpdateEventWithoutDatesResource;
 import com.eventec.myevent.event.interfaces.rest.transform.CreateEventCommandFromResourceAssembler;
 import com.eventec.myevent.event.interfaces.rest.transform.EventResourceFromEntityAssembler;
 import com.eventec.myevent.event.interfaces.rest.transform.UpdateEventCommandFromResourceAssembler;
@@ -73,6 +74,18 @@ public class EventsController {
         var eventResource = EventResourceFromEntityAssembler.toResourceFromEntity(updatedEvent.get());
         return ResponseEntity.ok(eventResource);
     }
+
+    @PutMapping("/{eventId}/without-dates")
+    public ResponseEntity<EventResource> updateEventWithoutDates(@PathVariable Long eventId, @RequestBody UpdateEventWithoutDatesResource resource) {
+        var updateEventCommand = UpdateEventCommandFromResourceAssembler.toCommandFromResource(resource);
+        var updatedEvent = eventCommandService.handle(updateEventCommand);
+        if (updatedEvent.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var eventResource = EventResourceFromEntityAssembler.toResourceFromEntity(updatedEvent.get());
+        return ResponseEntity.ok(eventResource);
+    }
+
 
     @DeleteMapping("/{eventId}")
     public ResponseEntity<?> deleteEvent(@PathVariable Long eventId) {

@@ -3,6 +3,7 @@ package com.eventec.myevent.event.domain.model.aggregates;
 import com.eventec.myevent.event.domain.exceptions.EventNotFoundException;
 import com.eventec.myevent.event.domain.model.commands.CreateEventCommand;
 import com.eventec.myevent.event.domain.model.commands.UpdateEventCommand;
+import com.eventec.myevent.event.domain.model.commands.UpdateEventCommandWithoutDates;
 import jakarta.persistence.*;
 
 
@@ -62,6 +63,16 @@ public class Event {
         // Los campos location, organizer y totalTickets no están presentes en UpdateEventCommand
         // Puedes agregarlos si son necesarios
     }
+    // Método para actualizar un evento con un UpdateEventCommandWithoutDates
+    public void updateWithoutDates(UpdateEventCommandWithoutDates command) {
+        if (!this.id.equals(command.id())) {
+            throw new EventNotFoundException(this.id);
+        }
+        this.name = command.eventName();
+        this.description = command.eventDescription();
+        // No actualizamos startDate ni endDate
+    }
+
 
     // Getters and setters (se omiten para brevedad)
 
