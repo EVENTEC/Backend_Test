@@ -7,8 +7,6 @@ import java.util.Date;
 
 public class CreateEventCommandFromResourceAssembler {
     public static CreateEventCommand toCommandFromResource(CreateEventResource resource) {
-        Date eventStartDate = resource.eventStartDate();
-        Date eventEndDate = resource.eventEndDate();
-        return new CreateEventCommand(resource.title(), resource.description(), eventStartDate, eventEndDate);
+        return new CreateEventCommand(resource.title(), resource.description());
     }
 }
