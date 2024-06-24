@@ -1,4 +1,18 @@
 package com.eventec.myevent.event.interfaces.rest.resources;
 
-public record EventResource(Long id, String title, String description) {
+import com.eventec.myevent.event.domain.model.aggregates.Location;
+import com.eventec.myevent.event.domain.model.aggregates.Organizer;
+
+import java.util.Date;
+
+public record EventResource(
+        Long id,
+        String name,
+        String description,
+        Date startDate,
+        Date endDate,
+        Location location,
+        Organizer organizer,
+        int totalTickets
+) {
 }

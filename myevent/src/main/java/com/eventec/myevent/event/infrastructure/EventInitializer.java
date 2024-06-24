@@ -153,8 +153,8 @@ public class EventInitializer {
                     1000);
 
             // Guardar los eventos en la base de datos si no existen
-            saveEventIfNotExists(eventRepository, event1);
-            saveEventIfNotExists(eventRepository, event2);
+            //saveEventIfNotExists(eventRepository, event1);
+            //saveEventIfNotExists(eventRepository, event2);
             saveEventIfNotExists(eventRepository, event3);
             saveEventIfNotExists(eventRepository, event4);
             saveEventIfNotExists(eventRepository, event5);
