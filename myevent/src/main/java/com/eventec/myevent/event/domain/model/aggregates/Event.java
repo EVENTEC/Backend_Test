@@ -16,6 +16,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Lob
+    @Column(length = 10000)
     private String description;
     private Date startDate;
     private Date endDate;

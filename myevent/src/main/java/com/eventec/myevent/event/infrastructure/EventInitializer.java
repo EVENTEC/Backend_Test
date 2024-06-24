@@ -19,10 +19,22 @@ public class EventInitializer {
             // Crear los eventos
             Event event1 = createEvent("Evento 1", "Descripción del Evento 1", "Location 1", "Address 1", "City 1", "Country 1", "Organizer 1", "Address 1", "Phone 1", 100);
             Event event2 = createEvent("Evento 2", "Descripción del Evento 2", "Location 2", "Address 2", "City 2", "Country 2", "Organizer 2", "Address 2", "Phone 2", 200);
+            Event event3 = createEvent(
+                    "Ferxxocalipsis",
+                    "¡FERXXO LLEGA A PERÚ CON SU GIRA - FERXXO LLEGA A PERÚ CON SU GIRA! Feid Ferxxo, reconocido por su talento y versatilidad en el género urbano, ha conquistado a audiencias de todo el mundo con su estilo único y sus letras contagiosas. Con hits como Porfa, Fumeteo y GANGA, el artista colombiano ha consolidado su posición como uno de los referentes más destacados de la música latina contemporánea.",
+                    "Jockey Club del Perú",
+                    "Jockey Club del Perú",
+                    "Lima",
+                    "Perú",
+                    "MyEvent",
+                    "MyEvent Address",
+                    "912345678",
+                    2000);
 
             // Guardar los eventos en la base de datos si no existen
             saveEventIfNotExists(eventRepository, event1);
             saveEventIfNotExists(eventRepository, event2);
+            saveEventIfNotExists(eventRepository, event3);
         };
     }
 
