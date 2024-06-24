@@ -26,6 +26,7 @@ public class Event {
     @Embedded
     private Organizer organizer;
     private int totalTickets;
+    private double priceTicket;
 
     // Constructor vacío (puede ser necesario para algunos frameworks y pruebas)
     public Event() {
