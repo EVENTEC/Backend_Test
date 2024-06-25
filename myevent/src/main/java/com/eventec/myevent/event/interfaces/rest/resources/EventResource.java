@@ -9,10 +9,11 @@ public record EventResource(
         Long id,
         String name,
         String description,
+        String category,
         Date startDate,
         Date endDate,
         Location location,
         Organizer organizer,
-        int totalTickets
-) {
+        int totalTickets,
+        double priceTicket) {
 }

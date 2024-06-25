@@ -9,11 +9,13 @@ public class EventResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getName(),
                 entity.getDescription(),
+                entity.getCategory(),
                 entity.getStartDate(),
                 entity.getEndDate(),
                 entity.getLocation(),
                 entity.getOrganizer(),
-                entity.getTotalTickets()
+                entity.getTotalTickets(),
+                entity.getPriceTicket()
         );
     }
 }

@@ -19,6 +19,7 @@ public class Event {
     @Lob
     @Column(length = 10000)
     private String description;
+    private String category;
     private Date startDate;
     private Date endDate;
     @Embedded
@@ -33,15 +34,17 @@ public class Event {
     }
 
     // Constructor completo
-    public Event(Long id, String name, String description, Date startDate, Date endDate, Location location, Organizer organizer, int totalTickets) {
+    public Event(Long id, String name, String description, String category, Date startDate, Date endDate, Location location, Organizer organizer, int totalTickets, double priceTicket) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.category = category;
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
         this.organizer = organizer;
         this.totalTickets = totalTickets;
+        this.priceTicket = priceTicket;
     }
 
     // Constructor que acepta un CreateEventCommand
@@ -51,7 +54,7 @@ public class Event {
         this.startDate = command.eventStartDate();
         this.endDate = command.eventEndDate();
         // Los campos location, organizer y totalTickets no están presentes en CreateEventCommand
-        // Puedes agregarlos si son necesarios
+
     }
 
     // Método para actualizar un evento con un UpdateEventCommand
@@ -76,8 +79,7 @@ public class Event {
         // No actualizamos startDate ni endDate
     }
 
-
-    // Getters and setters (se omiten para brevedad)
+    // Getters y setters
 
     public Long getId() {
         return id;
@@ -101,6 +103,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Date getStartDate() {
@@ -141,5 +151,13 @@ public class Event {
 
     public void setTotalTickets(int totalTickets) {
         this.totalTickets = totalTickets;
+    }
+
+    public double getPriceTicket() {
+        return priceTicket;
+    }
+
+    public void setPriceTicket(double priceTicket) {
+        this.priceTicket = priceTicket;
     }
 }
